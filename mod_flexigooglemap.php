@@ -25,21 +25,10 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
 }
 // Inclut les méthodes du script de soutien
 require_once dirname(__FILE__).'/helper.php';
-$listPending      = modFlexigooglemapHelper::getPending($params);
-$listRevised      = modFlexigooglemapHelper::getRevised($params);
-$listInprogress   = modFlexigooglemapHelper::getInprogress($params);
-$listDraft        = modFlexigooglemapHelper::getDraft($params);
-$listUseritem     = modFlexigooglemapHelper::getUseritem($params);
-$listCustomlist1  = modFlexigooglemapHelper::getCustomlist1($params);
-$listCustomlist2  = modFlexigooglemapHelper::getCustomlist2($params);
-$listCustomlist3  = modFlexigooglemapHelper::getCustomlist3($params);
-$listCustomlist4  = modFlexigooglemapHelper::getCustomlist4($params);
-$listCustomlist5  = modFlexigooglemapHelper::getCustomlist5($params);
-$listCustomlist6  = modFlexigooglemapHelper::getCustomlist6($params);
-$listCustomlist7  = modFlexigooglemapHelper::getCustomlist7($params);
-$listCustomlist8  = modFlexigooglemapHelper::getCustomlist8($params);
-$listCustomlist9  = modFlexigooglemapHelper::getCustomlist9($params);
-$listCustomlist10 = modFlexigooglemapHelper::getCustomlist10($params);
+$itemsLoc      = modFlexigooglemapHelper::getLoc($params);
+$catid = $params->get('catid');
+$fieldaddressid = $params->get('fieldaddressid');
+
 $moduleclass_sfx  = htmlspecialchars($params->get('moduleclass_sfx'));
 
 // Get Joomla Layout

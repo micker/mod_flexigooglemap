@@ -38,6 +38,10 @@ $itemmodel = new $itemmodel_name();
 //module config
 $height    = $params->get('height', '300px' );
 $width    = $params->get('width', '200px' );
+$mapcenter    = $params->get('mapcenter', '48.8566667, 2.3509871' );
+$apikey    = $params->get('apikey', '' );
+$maptype    = $params->get('maptype', '' );
+
 
 
 
@@ -51,24 +55,28 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
 ?>
 
 
-<div class="row-fluid">
+<div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap<?php echo $moduleclass_sfx ?>">
     <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>
         
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false?key=<?php echo $apikey; ?>"></script>
 <script type="text/javascript">
 
    /* Déclaration du centre de la map */ 
-   var latlng = new google.maps.LatLng(48.8566667, 2.3509871); // Paris
+   var latlng = new google.maps.LatLng(<?php echo $mapcenter; ?>); // initialize view
 
    /* Déclaration de l'objet qui définira les limites de la map */ 
    var bounds = new google.maps.LatLngBounds();
 
    /* Déclaration et remplissage du tableau qui contiendra nos points, objets LatLng. */
    var myPoints = [];
-    <?php 
-    $points = array('48.8566667, 2.3509871', '48.8123155, 2.2381535', '48.3906042, -4.4869013', '50.6371834, 3.0630174');
-    foreach ($points as $point){
-        echo "myPoints.push( new google.maps.LatLng(". $point .")); \r\n";
+    <?php
+    //Recuperation de point de ma bdd
+    foreach ($itemsLoc as $itemLoc){
+        $coord = unserialize ($itemLoc->value);
+        $lat = $coord['lat'];
+        $lon = $coord['lon'];
+        $coord = $lat.",".$lon;
+        echo "myPoints.push( new google.maps.LatLng(". $coord .")); \r\n";
     }
     ?>
 
@@ -77,7 +85,7 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
     /*zoom : 7,
     center: latlng, */
     //  ici, ces 2 valeurs ne sont plus utiles car calculées automatiquement
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.<?php echo $maptype; ?>
    }
 
    /* Ici, nous déclarons l'élément html ayant pour id "map" comme conteneur de la map */
@@ -100,6 +108,7 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
    /* Fonction qui affiche un marker sur la carte */ 
    function addThisMarker(point,m){
     var marker = new google.maps.Marker({position: point});
+       /*TODO ADD CLUSTER PINT SYSTEM*/
     return marker;
    }         
 
