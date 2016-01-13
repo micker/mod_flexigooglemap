@@ -79,6 +79,18 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
         echo "myPoints.push( new google.maps.LatLng(". $coord .")); \r\n";
     }
     ?>
+    var contentString = [];
+    <?php
+    foreach ($itemsLoc as $itemLoc){
+        $coord = unserialize ($itemLoc->value);
+        $lat = $coord['lat'];
+        $lon = $coord['lon'];
+        $coord = $lat.",".$lon;
+        //echo "myPoints.push( new google.maps.LatLng(". $coord .")); \r\n";
+    }
+    ?>
+    
+     var markerInfowindow = [];
 
    /* Déclaration des options de la map */ 
    var options = {
@@ -106,12 +118,14 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
    map.fitBounds(bounds);
 
    /* Fonction qui affiche un marker sur la carte */ 
-   function addThisMarker(point,m){
+   function addThisMarker(point,contentString,m){
     var marker = new google.maps.Marker({position: point});
-       /*TODO ADD CLUSTER PINT SYSTEM*/
+     var infowindow = new google.maps.InfoWindow({content: contentString});
+google.maps.event.addListener(marker, 'click', function() {
+ infowindow.open(map,marker);
+    });
     return marker;
    }    
-   
 
 </script>
 </div>
