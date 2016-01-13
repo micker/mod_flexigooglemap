@@ -1,6 +1,6 @@
 <?php
 /**
-* @version 0.6.0 stable $Id: default.php yannick berges
+* @version 0.0.3 stable $Id: default.php yannick berges
 * @package Joomla
 * @subpackage FLEXIcontent
 * @copyright (C) 2015 Berges Yannick - www.com3elles.com
@@ -45,7 +45,7 @@ abstract class modFlexigooglemapHelper
 		// recupere la connexion à la BD
 		$db = JFactory::getDbo();
 		$queryLoc = 'SELECT a.id, a.title, b.field_id, b.value , a.catid FROM #__content  AS a LEFT JOIN #__flexicontent_fields_item_relations AS b ON a.id = b.item_id '.$catids_join.' WHERE b.field_id = '.$fieldaddressid.' AND '.  $catids_where.' AND state = 1 ORDER BY title DESC LIMIT '. (int) $params->get('count');
-         var_dump ($queryLoc);
+        //var_dump ($queryLoc);
 		$db->setQuery( $queryLoc );
 		$itemsLoc = $db->loadObjectList();
 		foreach ($itemsLoc as &$itemLoc) {
@@ -55,6 +55,3 @@ abstract class modFlexigooglemapHelper
 	}
 	
 }
-
-//'SELECT a.id,b.name, a.title, a.catid, a.created, a.created_by, a.modified, a.modified_by FROM #__content AS a LEFT JOIN #__users AS b ON a.created_by = b.id '.$catids_join.'WHERE '.  $catids_where.' AND state = 1 ORDER BY modified DESC LIMIT '. (int) $params->get('count');
-//$catids_join = ' JOIN #__flexicontent_cats_item_relations AS rel ON rel.itemid = a.id ';
