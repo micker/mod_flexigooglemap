@@ -82,11 +82,12 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
     var contentString = [];
     <?php
     foreach ($itemsLoc as $itemLoc){
-        $coord = unserialize ($itemLoc->value);
-        $lat = $coord['lat'];
-        $lon = $coord['lon'];
-        $coord = $lat.",".$lon;
-        //echo "myPoints.push( new google.maps.LatLng(". $coord .")); \r\n";
+        //$coord = unserialize ($itemLoc->value);
+        //$lat = $coord['lat'];
+        //$lon = $coord['lon'];
+        //$coord = $lat.",".$lon;
+        $coord = $itemLoc->title;
+        echo "contentString.push( ". $coord ."); \r\n";
     }
     ?>
     
