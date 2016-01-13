@@ -110,7 +110,8 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
     var marker = new google.maps.Marker({position: point});
        /*TODO ADD CLUSTER PINT SYSTEM*/
     return marker;
-   }         
+   }    
+   
 
 </script>
 </div>
