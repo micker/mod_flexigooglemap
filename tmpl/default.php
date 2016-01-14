@@ -61,72 +61,100 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false?key=<?php echo $apikey; ?>"></script>
 <script type="text/javascript">
 
-   /* Déclaration du centre de la map */ 
-   var latlng = new google.maps.LatLng(<?php echo $mapcenter; ?>); // initialize view
+   
 
-   /* Déclaration de l'objet qui définira les limites de la map */ 
-   var bounds = new google.maps.LatLngBounds();
-
-   /* Déclaration et remplissage du tableau qui contiendra nos points, objets LatLng. */
-   var myPoints = [];
-    <?php
+    
+    // nouveau script
+    // Define your locations: HTML content for the info window, latitude, longitude
+    var locations = [
+         <?php
     //Recuperation de point de ma bdd
-    foreach ($itemsLoc as $itemLoc){
+    foreach ($itemsLoc as $itemLoc ){
         $coord = unserialize ($itemLoc->value);
         $lat = $coord['lat'];
         $lon = $coord['lon'];
-        $coord = $lat.",".$lon;
-        echo "myPoints.push( new google.maps.LatLng(". $coord .")); \r\n";
+        $addre = $coord['addr_display'];
+        $coordo = $lat.",".$lon;
+        //$title = json_encode($itemLoc->title);
+        $title = addslashes($itemLoc->title);
+       // echo "myPoints.push( new google.maps.LatLng(". $coord ."),contentString('toto')); \r\n";
+        echo "['<h4>$title</h4><p>$addre</p>',". $coordo ."],\r\n";
     }
     ?>
-    var contentString = [];
-    <?php
-    foreach ($itemsLoc as $itemLoc){
-        //$coord = unserialize ($itemLoc->value);
-        //$lat = $coord['lat'];
-        //$lon = $coord['lon'];
-        //$coord = $lat.",".$lon;
-        $coord = json_encode($itemLoc->title);
-        echo "contentString.push( ". $coord ."); \r\n";
-    }
-    ?>
+        
+     ['', <?php echo $mapcenter; ?>]
+    ];
     
-     var markerInfowindow = [];
+    // Setup the different icons and shadows
+    var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
+    
+    var icons = [
+      iconURLPrefix + 'red-dot.png',
+      iconURLPrefix + 'green-dot.png',
+      iconURLPrefix + 'blue-dot.png',
+      iconURLPrefix + 'orange-dot.png',
+      iconURLPrefix + 'purple-dot.png',
+      iconURLPrefix + 'pink-dot.png',      
+      iconURLPrefix + 'yellow-dot.png'
+    ]
+    var iconsLength = icons.length;
 
-   /* Déclaration des options de la map */ 
-   var options = {
-    /*zoom : 7,
-    center: latlng, */
-    //  ici, ces 2 valeurs ne sont plus utiles car calculées automatiquement
-    mapTypeId: google.maps.MapTypeId.<?php echo $maptype; ?>
-   }
-
-   /* Ici, nous déclarons l'élément html ayant pour id "map" comme conteneur de la map */
-   var myDiv = document.getElementById('map');
-
-   /* Chargement de la carte avec un type ROADMAP */
-   var map = new google.maps.Map(myDiv,options);
-
-   /* Boucle sur les points afin d'ajouter les markers à la map
-   et aussi d'étendre ses limites (bounds) grâce à la méthode extend */ 
-   for(var i = 0; i < myPoints.length; i++){
-    bounds.extend(myPoints[i]);
-    var thisMarker = addThisMarker(myPoints[i],i);
-    thisMarker.setMap(map);
-   }
-
-   /* Ici, on ajuste le zoom de la map en fonction des limites  */ 
-   map.fitBounds(bounds);
-
-   /* Fonction qui affiche un marker sur la carte */ 
-   function addThisMarker(point,contentString,m){
-    var marker = new google.maps.Marker({position: point});
-     var infowindow = new google.maps.InfoWindow({content: contentString});
-google.maps.event.addListener(marker, 'click', function() {
- infowindow.open(map,marker);
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(-37.92, 151.25),
+      mapTypeId: google.maps.MapTypeId.<?php echo $maptype;?>,
+      mapTypeControl: false,
+      streetViewControl: false,
+      panControl: false,
+      zoomControlOptions: {
+         position: google.maps.ControlPosition.LEFT_BOTTOM
+      }
     });
-    return marker;
-   }    
+
+    var infowindow = new google.maps.InfoWindow({
+      maxWidth: 160
+    });
+
+    var markers = new Array();
+    
+    var iconCounter = 0;
+    
+    // Add the markers and infowindows to the map
+    for (var i = 0; i < locations.length; i++) {  
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map,
+        icon: icons[iconCounter]
+      });
+
+      markers.push(marker);
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+      
+      iconCounter++;
+      // We only have a limited number of possible icon colors, so we may have to restart the counter
+      if(iconCounter >= iconsLength) {
+      	iconCounter = 0;
+      }
+    }
+
+    function autoCenter() {
+      //  Create a new viewpoint bound
+      var bounds = new google.maps.LatLngBounds();
+      //  Go through each...
+      for (var i = 0; i < markers.length; i++) {  
+				bounds.extend(markers[i].position);
+      }
+      //  Fit these bounds to the map
+      map.fitBounds(bounds);
+    }
+    autoCenter();
+  </script> 
 
 </script>
 </div>
