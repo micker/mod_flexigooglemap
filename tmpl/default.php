@@ -86,7 +86,7 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
         //$lat = $coord['lat'];
         //$lon = $coord['lon'];
         //$coord = $lat.",".$lon;
-        $coord = $itemLoc->title;
+        $coord = json_encode($itemLoc->title);
         echo "contentString.push( ". $coord ."); \r\n";
     }
     ?>
