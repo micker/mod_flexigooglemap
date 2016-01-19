@@ -59,6 +59,7 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
     <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>
         
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false?key=<?php echo $apikey; ?>"></script>
+    <script type="text/javascript" src="modules/mod_flexigooglemap/assets/js/markerclusterer_compiled.js"></script>
 <script type="text/javascript">
 
    
@@ -73,12 +74,14 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
         $coord = unserialize ($itemLoc->value);
         $lat = $coord['lat'];
         $lon = $coord['lon'];
+        if (!empty($lat) || !empty($lon) ){
         $addre = $coord['addr_display'];
         $coordo = $lat.",".$lon;
         //$title = json_encode($itemLoc->title);
         $title = addslashes($itemLoc->title);
        // echo "myPoints.push( new google.maps.LatLng(". $coord ."),contentString('toto')); \r\n";
         echo "['<h4>$title</h4><p>$addre</p>',". $coordo ."],\r\n";
+            }
     }
     ?>
         
@@ -110,7 +113,6 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
          position: google.maps.ControlPosition.LEFT_BOTTOM
       }
     });
-
     var infowindow = new google.maps.InfoWindow({
       maxWidth: 160
     });
@@ -128,7 +130,8 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
       });
 
       markers.push(marker);
-
+        var mc = new MarkerClusterer(map);
+        
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
           infowindow.setContent(locations[i][0]);
@@ -141,8 +144,8 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
       if(iconCounter >= iconsLength) {
       	iconCounter = 0;
       }
-    }
 
+    }
     function autoCenter() {
       //  Create a new viewpoint bound
       var bounds = new google.maps.LatLngBounds();
