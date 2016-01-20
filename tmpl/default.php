@@ -62,31 +62,29 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
     <script type="text/javascript" src="modules/mod_flexigooglemap/assets/js/markerclusterer_compiled.js"></script>
 <script type="text/javascript">
 
-   
-
-    
-    // nouveau script
-    // Define your locations: HTML content for the info window, latitude, longitude
-    var locations = [
-         <?php
+<?php
+    $tMapTips = array();
     //Recuperation de point de ma bdd
     foreach ($itemsLoc as $itemLoc ){
         $coord = unserialize ($itemLoc->value);
         $lat = $coord['lat'];
         $lon = $coord['lon'];
-        if (!empty($lat) || !empty($lon) ){
-        $addre = $coord['addr_display'];
-        $coordo = $lat.",".$lon;
-        //$title = json_encode($itemLoc->title);
-        $title = addslashes($itemLoc->title);
-       // echo "myPoints.push( new google.maps.LatLng(". $coord ."),contentString('toto')); \r\n";
-        echo "['<h4>$title</h4><p>$addre</p>',". $coordo ."],\r\n";
-            }
+        if (!empty($lat) || !empty($lon) ) {
+            $addre = $coord['addr_display'];
+            $coordo = $lat.",".$lon;
+            //$title = json_encode($itemLoc->title);
+            $title = addslashes($itemLoc->title);
+            // echo "myPoints.push( new google.maps.LatLng(". $coord ."),contentString('toto')); \r\n";
+            //echo "['<h4>$title</h4><p>$addre</p>',". $coordo ."],\r\n";
+            $tMapTips[] = "['<h4>$title</h4><p>$addre</p>',". $coordo ."],\r\n";
+        }
     }
-    ?>
-        
-     ['', <?php echo $mapcenter; ?>]
-    ];
+    $tabMapTipsJS = implode(",",  $tMapTips);
+?>
+    
+    // nouveau script
+    // Define your locations: HTML content for the info window, latitude, longitude
+    var locations = [ <?php echo $tabMapTipsJS; ?>  ];
     
     // Setup the different icons and shadows
     var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
