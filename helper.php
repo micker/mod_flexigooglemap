@@ -50,7 +50,7 @@ abstract class modFlexigooglemapHelper
 		$itemsLoc = $db->loadObjectList();
         //var_dump ($itemsLoc);
 		foreach ($itemsLoc as &$itemLoc) {
-			$itemLoc->link = JRoute::_('index.php?option=com_flexicontent&task=items.edit&cid[]='.$itemLoc->id);
+			$itemLoc->link = JRoute::_( FlexicontentHelperRoute::getItemRoute($itemLoc->id, $catid ) );
 		}
 		return $itemsLoc;
 	}

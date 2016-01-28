@@ -24,12 +24,19 @@ $document = JFactory::getDocument();
 //$document->addStyleSheet("./modules/mod_flexiadmin/assets/css/style.css",'text/css',"screen");
 
 //extrafield
-require_once (JPATH_ADMINISTRATOR.DS.'components/com_flexicontent/defineconstants.php');
+//require_once (JPATH_ADMINISTRATOR.DS.'components/com_flexicontent/defineconstants.php');
 JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_flexicontent'.DS.'tables');
 require_once("./components/com_flexicontent/classes/flexicontent.fields.php");
 require_once("./components/com_flexicontent/classes/flexicontent.helper.php");
 require_once("./components/com_flexicontent/helpers/permission.php");
 require_once("./components/com_flexicontent/models/".FLEXI_ITEMVIEW.".php");
+
+
+require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_flexicontent'.DS.'defineconstants.php');
+require_once(JPATH_SITE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
+require_once(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'helpers'.DS.'route.php');
+
+
 
 $itemmodel_name = FLEXI_J16GE ? 'FlexicontentModelItem' : 'FlexicontentModelItems';
 $itemmodel = new $itemmodel_name();
@@ -41,6 +48,13 @@ $width    = $params->get('width', '200px' );
 $mapcenter    = $params->get('mapcenter', '48.8566667, 2.3509871' );
 $apikey    = $params->get('apikey', '' );
 $maptype    = $params->get('maptype', '' );
+
+$clustermode = $params->get('clustermode', '' );
+$gridsize = $params->get('gridsize', '' );
+$maxzoom = $params->get('maxzoom', '' );
+
+$uselink = $params->get('uselink', '' );
+$useadress = $params->get('useadress', '' );
 
 
 
@@ -58,8 +72,8 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
 <div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap<?php echo $moduleclass_sfx ?>">
     <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>
         
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false?key=<?php echo $apikey; ?>"></script>
-    <script type="text/javascript" src="modules/mod_flexigooglemap/assets/js/markerclusterer_compiled.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&sensor=false<?php if ($apikey) echo '?key='.$apikey; ?>"></script>
+<script type="text/javascript" src="modules/mod_flexigooglemap/assets/js/markerclusterer_compiled.js"></script>
 <script type="text/javascript">
 
 <?php
@@ -70,13 +84,19 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
         $lat = $coord['lat'];
         $lon = $coord['lon'];
         if (!empty($lat) || !empty($lon) ) {
-            $addre = $coord['addr_display'];
+            if ($useadress){
+               $addre = '<p>'.$coord['addr_display'].'</p>'; 
+            }
             $coordo = $lat.",".$lon;
             //$title = json_encode($itemLoc->title);
             $title = addslashes($itemLoc->title);
+            if ($uselink){
+                    $link = $itemLoc->link;
+                    $link = '<p class="link"><a href="'.$link.'">'.$title.'</a></p>';
+            }
             // echo "myPoints.push( new google.maps.LatLng(". $coord ."),contentString('toto')); \r\n";
             //echo "['<h4>$title</h4><p>$addre</p>',". $coordo ."],\r\n";
-            $tMapTips[] = "['<h4>$title</h4><p>$addre</p>',". $coordo ."]\r\n";
+            $tMapTips[] = "['<h4 class=\"fleximaptitle\">$title</h4>$addre $link',". $coordo ."]\r\n";
         }
     }
     $tabMapTipsJS = implode(",",  $tMapTips);
@@ -128,7 +148,6 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
       });
 
       markers.push(marker);
-        var mc = new MarkerClusterer(map);
         
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
@@ -154,7 +173,14 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
       //  Fit these bounds to the map
       map.fitBounds(bounds);
     }
+    <?php if ($clustermode) {
+    
+    echo "var mcOptions = {gridSize:$gridsize, maxZoom:$maxzoom};\r\n";
+    echo "var marker = new MarkerClusterer(map, markers, mcOptions);\r\n";
+}
+    ?>
     autoCenter();
+    
   </script> 
 
 </script>

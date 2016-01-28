@@ -9,7 +9,7 @@
 	<creationDate>Janvier 2016</creationDate>
 	<authorEmail>yannick@com3elles.com</authorEmail>
 	<authorUrl>www.com3elles.com</authorUrl>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<copyright>Copyright (C) 2005 - 2015 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>FLEXI_GOOGLEMAP_INTRO</description>
@@ -54,11 +54,31 @@
 				    description="FLEXI_GOOGLEMAP_APIKEY_DESC" 
                 />	
 			<field name="" type="separator" default="FLEXI_GOOGLEMAP_DISPLAY" level="level1" />		
+                
                 <field 					
-                        name="mapcenter" type="text"					
-                        default="48.8566667, 2.3509871" label="FLEXI_GOOGLEMAP_CENTER"					
-                        description="FLEXI_GOOGLEMAP_CENTER_DESC" 
-                    />
+                        name="clustermode" type="radio"					
+                        default="1" label="FLEXI_GOOGLEMAP_CLUSTERMODE"			
+                        description="FLEXI_GOOGLEMAP_CLUSTERMODE_DESC"
+                       class="btn-group btn-group-yesno"
+                    >
+                    <option value="0">FLEXI_GOOGLEMAP_NO</option>
+                    <option value="1">FLEXI_GOOGLEMAP_YES</option>
+                </field>
+                <field 					
+                    name="gridsize" type="text"					
+				    default="50" label="FLEXI_GOOGLEMAP_GRIDESIZE"					
+				    description="FLEXI_GOOGLEMAP_GRIDESIZE_DESC" 
+                       showon="clustermode:1"
+                />	
+                <field 					
+                    name="maxzoom" type="text"					
+				    default="15" label="FLEXI_GOOGLEMAP_MAXZOOM"					
+				    description="FLEXI_GOOGLEMAP_MAXZOOM_DESC" 
+                       showon="clustermode:1"
+                />	
+
+
+
                 <field 					
 				name="count" type="list"					
 				default="5" label="FLEXI_GOOGLEMAP_NBITEM"					
@@ -90,6 +110,26 @@
 				    default="600px" label="FLEXI_GOOGLEMAP_height"					
 				    description="FLEXI_GOOGLEMAP_HEIGHT_DESC" 
                 />	
+                
+                <field name="" type="separator" default="FLEXI_GOOGLEMAP_INFOWINDOWS" level="level1" />	
+                <field 					
+                        name="uselink" type="radio"					
+                        default="1" label="FLEXI_GOOGLEMAP_USELINK"			
+                        description="FLEXI_GOOGLEMAP_USELINK_DESC"
+                       class="btn-group btn-group-yesno"
+                    >
+                    <option value="0">FLEXI_GOOGLEMAP_NO</option>
+                    <option value="1">FLEXI_GOOGLEMAP_YES</option>
+                </field>
+                    <field 					
+                        name="useadress" type="radio"					
+                        default="1" label="FLEXI_GOOGLEMAP_USEADRESS"			
+                        description="FLEXI_GOOGLEMAP_USEADRESS_DESC"
+                       class="btn-group btn-group-yesno"
+                    >
+                    <option value="0">FLEXI_GOOGLEMAP_NO</option>
+                    <option value="1">FLEXI_GOOGLEMAP_YES</option>
+                </field>
 			</fieldset>
 		</fields>
 	</config>
