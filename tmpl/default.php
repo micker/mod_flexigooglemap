@@ -1,6 +1,6 @@
 <?php
 /**
-* @version 0.0.3 stable $Id: default.php yannick berges
+* @version 0.0.4 stable $Id: default.php yannick berges
 * @package Joomla
 * @subpackage FLEXIcontent
 * @copyright (C) 2015 Berges Yannick - www.com3elles.com
@@ -55,6 +55,8 @@ $maxzoom = $params->get('maxzoom', '' );
 
 $uselink = $params->get('uselink', '' );
 $useadress = $params->get('useadress', '' );
+
+$animationmarker = $params->get('animationmarker', '' );
 
 
 
@@ -144,6 +146,11 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map,
+          <?php if($animationmarker){
+          //animation option
+          echo 'animation: google.maps.Animation.DROP,';
+}
+          ?>
         icon: icons[iconCounter]
       });
 

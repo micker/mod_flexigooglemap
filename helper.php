@@ -1,6 +1,6 @@
 <?php
 /**
-* @version 0.0.3 stable $Id: default.php yannick berges
+* @version 0.0.4 stable $Id: default.php yannick berges
 * @package Joomla
 * @subpackage FLEXIcontent
 * @copyright (C) 2015 Berges Yannick - www.com3elles.com
@@ -50,7 +50,8 @@ abstract class modFlexigooglemapHelper
 		$itemsLoc = $db->loadObjectList();
         //var_dump ($itemsLoc);
 		foreach ($itemsLoc as &$itemLoc) {
-			$itemLoc->link = JRoute::_( FlexicontentHelperRoute::getItemRoute($itemLoc->id, $catid ) );
+            $id = $itemLoc->id;
+			$itemLoc->link = JRoute::_( FlexicontentHelperRoute::getItemRoute($id, $catid ) );
 		}
 		return $itemsLoc;
 	}

@@ -89,7 +89,16 @@
 				<option	value="500">500</option>						
 				<option	value="1000">1000</option>						
 				<option	value="10000">10000</option>				
-			</field>	
+			</field>
+                 <field 					
+                        name="animationmarker" type="radio"					
+                        default="1" label="FLEXI_GOOGLEMAP_ANIMATIONMARKER"			
+                        description="FLEXI_GOOGLEMAP_ANIMATIONMARKER_DESC"
+                       class="btn-group btn-group-yesno"
+                    >
+                    <option value="0">FLEXI_GOOGLEMAP_NO</option>
+                    <option value="1">FLEXI_GOOGLEMAP_YES</option>
+                </field>
                 <field 					
                         name="maptype" type="list"					
                         default="ROADMAP" label="FLEXI_GOOGLEMAP_MAPTYPE"			
