@@ -57,6 +57,7 @@ $uselink = $params->get('uselink', '' );
 $useadress = $params->get('useadress', '' );
 
 $animationmarker = $params->get('animationmarker', '' );
+$linkmode = $params->get('linkmode', '' );
 
 
 
@@ -94,7 +95,7 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
             $title = addslashes($itemLoc->title);
             if ($uselink){
                     $link = $itemLoc->link;
-                    $link = '<p class="link"><a href="'.$link.'">'.$title.'</a></p>';
+                    $link = '<p class="link"><a href="'.$link.'" target="'.$linkmode.'">'.$title.'</a></p>';
             }
             // echo "myPoints.push( new google.maps.LatLng(". $coord ."),contentString('toto')); \r\n";
             //echo "['<h4>$title</h4><p>$addre</p>',". $coordo ."],\r\n";

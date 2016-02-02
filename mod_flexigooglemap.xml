@@ -81,14 +81,16 @@
 
                 <field 					
 				name="count" type="list"					
-				default="5" label="FLEXI_GOOGLEMAP_NBITEM"					
-				description="FLEXI_GOOGLEMAP_NBITEM_DESC">						
-				<option	value="10">10</option>						
-				<option	value="50">50</option>						
-				<option	value="100">100</option>						
-				<option	value="500">500</option>						
-				<option	value="1000">1000</option>						
-				<option	value="10000">10000</option>				
+				default="" label="FLEXI_GOOGLEMAP_NBITEM"					
+				description="FLEXI_GOOGLEMAP_NBITEM_DESC">
+                <option	value="">FLEXI_GOOGLEMAP_NOLIMITE</option>	
+				<option	value="DESC LIMIT 10">10</option>						
+				<option	value="DESC LIMIT 50">50</option>						
+				<option	value="DESC LIMIT 100">100</option>						
+				<option	value="DESC LIMIT 500">500</option>						
+				<option	value="DESC LIMIT 1000">1000</option>						
+				<option	value="DESC LIMIT 10000">10000</option>	
+                    
 			</field>
                  <field 					
                         name="animationmarker" type="radio"					
@@ -129,6 +131,16 @@
                     >
                     <option value="0">FLEXI_GOOGLEMAP_NO</option>
                     <option value="1">FLEXI_GOOGLEMAP_YES</option>
+                </field>
+                
+                <field 					
+                        name="linkmode" type="radio"					
+                        default="" label="FLEXI_GOOGLEMAP_LINKMODE"			
+                        description="FLEXI_GOOGLEMAP_LINKMODE_DESC"
+                       class="btn-group btn-group-yesno" showon="uselink:1"
+                    >
+                    <option value="_blank">FLEXI_GOOGLEMAP_BLANK</option>
+                    <option value="">FLEXI_GOOGLEMAP_SAME</option>
                 </field>
                     <field 					
                         name="useadress" type="radio"					

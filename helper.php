@@ -41,10 +41,11 @@ abstract class modFlexigooglemapHelper
         //var_dump ($catlist);
 
         $catids_where = ' rel.catid IN ('.$catlist.') ';
+        $limit =
         //var_dump ($catids_where);
 		// recupere la connexion à la BD
 		$db = JFactory::getDbo();
-		$queryLoc = 'SELECT a.id, a.title, b.field_id, b.value , a.catid FROM #__content  AS a LEFT JOIN #__flexicontent_fields_item_relations AS b ON a.id = b.item_id '.$catids_join.' WHERE b.field_id = '.$fieldaddressid.' AND '.  $catids_where.' AND state = 1 ORDER BY title DESC LIMIT '. (int) $params->get('count');
+		$queryLoc = 'SELECT a.id, a.title, b.field_id, b.value , a.catid FROM #__content  AS a LEFT JOIN #__flexicontent_fields_item_relations AS b ON a.id = b.item_id '.$catids_join.' WHERE b.field_id = '.$fieldaddressid.' AND '.  $catids_where.' AND state = 1 ORDER BY title '.$params->get('count');
         //var_dump ($queryLoc);
 		$db->setQuery( $queryLoc );
 		$itemsLoc = $db->loadObjectList();
