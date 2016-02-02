@@ -28,6 +28,7 @@ require_once dirname(__FILE__).'/helper.php';
 $itemsLoc      = modFlexigooglemapHelper::getLoc($params);
 $catid = $params->get('catid');
 $fieldaddressid = $params->get('fieldaddressid');
+$count = $params->get('count');
 
 $moduleclass_sfx  = htmlspecialchars($params->get('moduleclass_sfx'));
 
