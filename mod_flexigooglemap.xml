@@ -29,7 +29,7 @@
 	</languages>
 	<config>
 		<fields name="params">
-			<fieldset name="basic" addfieldpath="administrator/modules/mod_flexiadmin/elements/">				
+			<fieldset name="basic" addfieldpath="modules/mod_flexigooglemap/elements/">				
 			<field name="" type="separator" default="FLEXI_GOOGLEMAP_CONFIG" level="level1" />				
                 <field 					
                         name="catidmode" type="radio"					
@@ -92,6 +92,32 @@
 				<option	value="DESC LIMIT 10000">10000</option>	
                     
 			</field>
+                <field name="" type="separator" default="FLEXI_GOOGLEMAP_MARKERSDISPLAY" level="level2" />	
+                  <field 					
+				name="markercolor" type="list"					
+				default="redpt" label="FLEXI_GOOGLEMAP_MARKERSCOLOR"					
+				description="FLEXI_GOOGLEMAP_MARKERSCOLOR_DESC">
+                <option	value="redpt">FLEXI_GOOGLEMAP_MARKERSCOLOR_REDPT</option>	
+                <option	value="greenpt">FLEXI_GOOGLEMAP_MARKERSCOLOR_GREENPT</option>
+				<option	value="bluept">FLEXI_GOOGLEMAP_MARKERSCOLOR_BLUEPT</option>						
+                <option	value="violetpt">FLEXI_GOOGLEMAP_MARKERSCOLOR_VIOLETPT</option>	
+                    
+			</field>
+                   <field 					
+                        name="lettermarkermode" type="radio"					
+                        default="0" label="FLEXI_GOOGLEMAP_LETTERMARKERMODE"			
+                        description="FLEXI_GOOGLEMAP_LETTERMARKERMODE_DESC"
+                       class="btn-group btn-group-yesno"
+                    >
+                    <option value="0">FLEXI_GOOGLEMAP_NO</option>
+                    <option value="1">FLEXI_GOOGLEMAP_YES</option>
+                </field>
+                 <field 					
+                    name="lettermarker" type="text"					
+				    default="A" label="FLEXI_GOOGLEMAP_LETTERMARKER"					
+				    description="FLEXI_GOOGLEMAP_LETTERMARKER_DESC" 
+                       showon="lettermarkermode:1"
+                />	
                  <field 					
                         name="animationmarker" type="radio"					
                         default="1" label="FLEXI_GOOGLEMAP_ANIMATIONMARKER"			

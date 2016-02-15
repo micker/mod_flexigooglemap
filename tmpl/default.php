@@ -70,9 +70,13 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
    return;
 }
 ?>
-
-
-<div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap<?php echo $moduleclass_sfx ?>">
+<?php 
+//global $fc_list_items;
+//print_r ($fc_list_items); 
+//$fc_list_items->fields
+//$fc_list_items->fieldvalues
+?>
+<div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap<?php echo $moduleclass_sfx ?>" style="width:<?php echo $width; ?>;height:<?php echo $height; ?>;">
     <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>
         
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&sensor=false<?php if ($apikey) echo '?key='.$apikey; ?>"></script>
@@ -109,19 +113,9 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
     // Define your locations: HTML content for the info window, latitude, longitude
     var locations = [ <?php echo $tabMapTipsJS; ?>  ];
     
-    // Setup the different icons and shadows
-    var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
-    
-    var icons = [
-      iconURLPrefix + 'red-dot.png',
-      iconURLPrefix + 'green-dot.png',
-      iconURLPrefix + 'blue-dot.png',
-      iconURLPrefix + 'orange-dot.png',
-      iconURLPrefix + 'purple-dot.png',
-      iconURLPrefix + 'pink-dot.png',      
-      iconURLPrefix + 'yellow-dot.png'
-    ]
+    var icons = [<?php echo $markerdisplay; ?>]
     var iconsLength = icons.length;
+    
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 10,
