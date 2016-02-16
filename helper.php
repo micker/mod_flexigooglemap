@@ -75,7 +75,7 @@ abstract class modFlexigooglemapHelper
 				<option	value="bluept">FLEXI_GOOGLEMAP_MARKERSCOLOR_BLUEPT</option>						
                 <option	value="violetpt">FLEXI_GOOGLEMAP_MARKERSCOLOR_VIOLETPT</option>	
       */
-            
+    $markerimage = $params->get('markerimage');
       $markercolor = $params->get('markercolor');
       $lettermarker = $params->get('lettermarker');
       $lettermarkermode = $params->get('lettermarkermode');
@@ -84,27 +84,26 @@ abstract class modFlexigooglemapHelper
         }else{
             $letter="";
         }
-        $color ="spotlight-poi.png";
+        $color ="spotlight-waypoint-b.png";
         switch ($markercolor){
-            case "redpt":
-                $color ="spotlight-poi.png";
+            case "red":
+                $color ="spotlight-waypoint-b.png";
                 break;
-            case "bluept":
-                $color ="spotlight-waypoint-blue.png";
-                break;
-            case "vertpt":
+            case "green":
                 $color ="spotlight-waypoint-a.png";
                 break;
-            case "violetpt":
-                $color ="spotlight-ad.png";
-                break;
                 default :
-  $color ="spotlight-poi.png";
+  $color ="spotlight-waypoint-b.png";
   break;
         }
     $url="http://mt.google.com/vt/icon/name=icons/spotlight/";
+    if($markerimage){
+    $icon="'$markerimage'";
+        return $icon;
+    }else{
     $icon="'$url$color$letter'";
     return $icon;
     }
-	
+            }
+
 }

@@ -13,6 +13,7 @@
 	<copyright>Copyright (C) 2005 - 2015 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>FLEXI_GOOGLEMAP_INTRO</description>
+    <scriptfile>install.php</scriptfile>
 	<files>
 		<filename module="mod_flexigooglemap">mod_flexigooglemap.php</filename>
 		<folder>tmpl</folder>
@@ -93,17 +94,11 @@
                     
 			</field>
                 <field name="" type="separator" default="FLEXI_GOOGLEMAP_MARKERSDISPLAY" level="level2" />	
-                  <field 					
-				name="markercolor" type="list"					
-				default="redpt" label="FLEXI_GOOGLEMAP_MARKERSCOLOR"					
-				description="FLEXI_GOOGLEMAP_MARKERSCOLOR_DESC">
-                <option	value="redpt">FLEXI_GOOGLEMAP_MARKERSCOLOR_REDPT</option>	
-                <option	value="greenpt">FLEXI_GOOGLEMAP_MARKERSCOLOR_GREENPT</option>
-				<option	value="bluept">FLEXI_GOOGLEMAP_MARKERSCOLOR_BLUEPT</option>						
-                <option	value="violetpt">FLEXI_GOOGLEMAP_MARKERSCOLOR_VIOLETPT</option>	
-                    
-			</field>
-                   <field 					
+                  
+                <field name="markerimage" type="media" directory="marker" label="FLEXI_GOOGLEMAP_MARKERSIMAGE"					
+				description="FLEXI_GOOGLEMAP_MARKERSCIMAGE_DESC" preview="true" preview_width="80" preview_height="80" />
+               
+                <field 					
                         name="lettermarkermode" type="radio"					
                         default="0" label="FLEXI_GOOGLEMAP_LETTERMARKERMODE"			
                         description="FLEXI_GOOGLEMAP_LETTERMARKERMODE_DESC"
@@ -112,6 +107,15 @@
                     <option value="0">FLEXI_GOOGLEMAP_NO</option>
                     <option value="1">FLEXI_GOOGLEMAP_YES</option>
                 </field>
+                
+                <field 					
+				name="markercolor" type="list"					
+				default="redpt" label="FLEXI_GOOGLEMAP_MARKERSCOLOR"					
+				description="FLEXI_GOOGLEMAP_MARKERSCOLOR_DESC"
+                        showon="lettermarkermode:1"> 
+                <option	value="red">FLEXI_GOOGLEMAP_MARKERSCOLOR_RED</option>	
+                <option	value="green">FLEXI_GOOGLEMAP_MARKERSCOLOR_GREEN</option>        
+			</field>
                  <field 					
                     name="lettermarker" type="text"					
 				    default="A" label="FLEXI_GOOGLEMAP_LETTERMARKER"					
