@@ -44,6 +44,7 @@ abstract class modFlexigooglemapHelper
         //var_dump ($catids_where);
 		// recupere la connexion à la BD
         if (!empty($fieldaddressid)){
+        $catidmode = $params->get('count');
 		$db = JFactory::getDbo();
 		$queryLoc = 'SELECT a.id, a.title, b.field_id, b.value , a.catid FROM #__content  AS a LEFT JOIN #__flexicontent_fields_item_relations AS b ON a.id = b.item_id '.$catids_join.' WHERE b.field_id = '.$fieldaddressid.' AND '.  $catids_where.' AND state = 1 ORDER BY title '.$count;
         //var_dump ($queryLoc);
@@ -83,6 +84,7 @@ abstract class modFlexigooglemapHelper
         }else{
             $letter="";
         }
+        $color ="spotlight-poi.png";
         switch ($markercolor){
             case "redpt":
                 $color ="spotlight-poi.png";
@@ -96,6 +98,9 @@ abstract class modFlexigooglemapHelper
             case "violetpt":
                 $color ="spotlight-ad.png";
                 break;
+                default :
+  $color ="spotlight-poi.png";
+  break;
         }
     $url="http://mt.google.com/vt/icon/name=icons/spotlight/";
     $icon="'$url$color$letter'";
