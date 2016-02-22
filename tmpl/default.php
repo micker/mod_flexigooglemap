@@ -73,9 +73,8 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
 <?php 
 //global $fc_list_items;
 //print_r ($fc_list_items); 
-//$fc_list_items->fields
+//$fc_list_items->fields;
 //$fc_list_items->fieldvalues
-echo $markercolor = $params->get('markercolor');
 ?>
 <div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap<?php echo $moduleclass_sfx ?>" style="width:<?php echo $width; ?>;height:<?php echo $height; ?>;">
     <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>

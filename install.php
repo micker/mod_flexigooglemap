@@ -1,34 +1,20 @@
 <?php
-/**
- * Part of Component Akquickicons files.
- *
- * @copyright   Copyright (C) 2014 Asikart. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
-// No direct access
+// No direct access to this file
 defined('_JEXEC') or die;
-
+ 
 /**
- * Script file of Akquickicons component
- *
- * @package     Joomla.Administrator
- * @subpackage  com_akquickicons
+ * Script file of HelloWorld module
  */
-class Mod_flexigooglemapInstallerScript
+class mod_flexigooglemapInstallerScript
 {
 	/**
-	 * Method to install the component.
+	 * Method to install the extension
+	 * $parent is the class calling this method
 	 *
-	 * @param JInstallerAdapterComponent $parent
-	 *
-	 * @return  void
+	 * @return void
 	 */
-	public function install(\JInstallerAdapterModule $parent)
+	function install($parent) 
 	{
-		// Set Default datas with asset.
-		$db = JFactory::getDbo();
-
 		$p_installer = $parent->getParent();
 		$path        = $p_installer->getPath('source');
 
@@ -47,53 +33,52 @@ class Mod_flexigooglemapInstallerScript
 		{
 			JFactory::getApplication()->enqueueMessage('images/marker folder has exists.', 'warning');
 		}
-
-		
+		echo '<p>The module has been installed</p>';
 	}
-
+ 
 	/**
-	 * Method to uninstall the component.
+	 * Method to uninstall the extension
+	 * $parent is the class calling this method
 	 *
-	 * @param JInstallerAdapterComponent $parent
-	 *
-	 * @return  void
+	 * @return void
 	 */
-	public function uninstall(\JInstallerAdapterModule $parent)
+	function uninstall($parent) 
 	{
+		echo '<p>The module has been uninstalled</p>';
 	}
-
+ 
 	/**
-	 * Method to update the component
+	 * Method to update the extension
+	 * $parent is the class calling this method
 	 *
-	 * @param JInstallerAdapterComponent $parent
-	 *
-	 * @return  void
+	 * @return void
 	 */
-	public function update(\JInstallerAdapterModule $parent)
+	function update($parent) 
 	{
+		//echo '<p>The module has been updated to version' . $parent->get('manifest')->version) . '</p>';
 	}
-
+ 
 	/**
-	 * ethod to run before an install/update/uninstall method
+	 * Method to run before an install/update/uninstall method
+	 * $parent is the class calling this method
+	 * $type is the type of change (install, update or discover_install)
 	 *
-	 * @param string                     $type
-	 * @param JInstallerAdapterComponent $parent
-	 *
-	 * @return  void
+	 * @return void
 	 */
-	public function preflight($type, \JInstallerAdapterModule $parent)
+	function preflight($type, $parent) 
 	{
+		echo '<p>Anything here happens before the installation/update/uninstallation of the module</p>';
 	}
-
+ 
 	/**
 	 * Method to run after an install/update/uninstall method
+	 * $parent is the class calling this method
+	 * $type is the type of change (install, update or discover_install)
 	 *
-	 * @param string                     $type
-	 * @param JInstallerAdapterComponent $parent
-	 *
-	 * @return  void
+	 * @return void
 	 */
-	public function postflight($type, \JInstallerAdapterModule $parent)
+	function postflight($type, $parent) 
 	{
-    }
+		echo '<p>Anything here happens after the installation/update/uninstallation of the module</p>';
+	}
 }
