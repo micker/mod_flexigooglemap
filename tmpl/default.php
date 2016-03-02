@@ -93,6 +93,8 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
         if (!empty($lat) || !empty($lon) ) {
             if ($useadress){
                $addre = '<p>'.$coord['addr_display'].'</p>'; 
+               $addre = '<p>'.$coord['addr_display'].'</p>'; 
+               $addre = addslashes($addre);
             }
             $coordo = $lat.",".$lon;
             //$title = json_encode($itemLoc->title);
