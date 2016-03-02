@@ -95,7 +95,7 @@
 			</field>
                 <field name="" type="separator" default="FLEXI_GOOGLEMAP_MARKERSDISPLAY" level="level2" />	
                   
-                <field name="markerimage" type="media" directory="marker" label="FLEXI_GOOGLEMAP_MARKERSIMAGE"					
+                <field name="markerimage" type="media" directory="mod_flexigooglemap/marker" label="FLEXI_GOOGLEMAP_MARKERSIMAGE"					
 				description="FLEXI_GOOGLEMAP_MARKERSCIMAGE_DESC" preview="true" preview_width="80" preview_height="80" />
                
                 <field 					
