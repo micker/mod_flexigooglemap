@@ -1,6 +1,6 @@
 <?php
 /**
-* @version 0.0.4 stable $Id: default.php yannick berges
+* @version 0.0.5 stable $Id: default.php yannick berges
 * @package Joomla
 * @subpackage FLEXIcontent
 * @copyright (C) 2015 Berges Yannick - www.com3elles.com
@@ -93,6 +93,8 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
         if (!empty($lat) || !empty($lon) ) {
             if ($useadress){
                $addre = '<p>'.$coord['addr_display'].'</p>'; 
+               $addre = '<p>'.$coord['addr_display'].'</p>'; 
+               $addre = addslashes($addre);
             }
             $coordo = $lat.",".$lon;
             //$title = json_encode($itemLoc->title);

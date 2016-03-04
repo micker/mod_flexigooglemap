@@ -15,25 +15,6 @@ class mod_flexigooglemapInstallerScript
 	 */
 	function install($parent) 
 	{
-		$p_installer = $parent->getParent();
-		$path        = $p_installer->getPath('source');
-
-		jimport('joomla.filesystem.folder');
-		$origin = $path . 'assets/marker';
-		$target = JPATH_ROOT . '/images/marker';
-
-		if (!is_dir($target))
-		{
-			if (JFolder::copy($origin, $target))
-			{
-				JFactory::getApplication()->enqueueMessage('Copy icons to: ' . $target, 'message');
-			}
-		}
-		else
-		{
-			JFactory::getApplication()->enqueueMessage('images/marker folder has exists.', 'warning');
-		}
-		echo '<p>The module has been installed</p>';
 	}
  
 	/**
@@ -67,7 +48,7 @@ class mod_flexigooglemapInstallerScript
 	 */
 	function preflight($type, $parent) 
 	{
-		echo '<p>Anything here happens before the installation/update/uninstallation of the module</p>';
+		echo '<p>Update is good</p>';
 	}
  
 	/**
@@ -79,6 +60,19 @@ class mod_flexigooglemapInstallerScript
 	 */
 	function postflight($type, $parent) 
 	{
-		echo '<p>Anything here happens after the installation/update/uninstallation of the module</p>';
-	}
+        $pathSourceName = JPath::clean(JPATH_ROOT.'/modules/mod_flexigooglemap/assets/marker');
+        $pathDestName   = JPath::clean(JPATH_ROOT.'/images/mod_flexigooglemap/marker');
+  
+  // 1. Check DESTINATION folder
+        if ( !JFolder::exists($pathDestName) && !JFolder::create($pathDestName) ) {
+        echo '<span class="alert alert-warning"> Error, unable to create folder: '. $pathDestName.'</span>';
+        }
+  
+  // 2. Copy all files
+        $files = glob($pathSourceName."/*.*");
+        foreach($files as $file){
+                $file_dest = basename($file);
+                copy($file, $pathDestName.'/'.$file_dest);
+        }
+    }
 }
