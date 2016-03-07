@@ -17,6 +17,10 @@
 
 //blocage des accés directs sur ce script
 defined('_JEXEC') or die('Accés interdit');
+require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_flexicontent'.DS.'defineconstants.php');
+require_once(JPATH_SITE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
+require_once(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'helpers'.DS.'route.php');
+
 abstract class modFlexigooglemapHelper
 {
 	public static function getLoc(&$params)
