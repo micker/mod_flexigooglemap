@@ -102,6 +102,7 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
             if ($uselink){
                     $link = $itemLoc->link;
                     $link = '<p class="link"><a href="'.$link.'" target="'.$linkmode.'">'.$title.'</a></p>';
+                    $link = addslashes($link);
             }
             // echo "myPoints.push( new google.maps.LatLng(". $coord ."),contentString('toto')); \r\n";
             //echo "['<h4>$title</h4><p>$addre</p>',". $coordo ."],\r\n";
