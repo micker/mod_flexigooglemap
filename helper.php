@@ -17,6 +17,10 @@
 
 //blocage des accés directs sur ce script
 defined('_JEXEC') or die('Accés interdit');
+require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_flexicontent'.DS.'defineconstants.php');
+require_once(JPATH_SITE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
+require_once(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'helpers'.DS.'route.php');
+
 abstract class modFlexigooglemapHelper
 {
 	public static function getLoc(&$params)
@@ -44,7 +48,7 @@ abstract class modFlexigooglemapHelper
         //var_dump ($catids_where);
 		// recupere la connexion à la BD
         if (!empty($fieldaddressid)){
-        $catidmode = $params->get('count');
+        $count = $params->get('count');
 		$db = JFactory::getDbo();
 		$queryLoc = 'SELECT a.id, a.title, b.field_id, b.value , a.catid FROM #__content  AS a LEFT JOIN #__flexicontent_fields_item_relations AS b ON a.id = b.item_id '.$catids_join.' WHERE b.field_id = '.$fieldaddressid.' AND '.  $catids_where.' AND state = 1 ORDER BY title '.$count;
         //var_dump ($queryLoc);

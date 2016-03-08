@@ -82,15 +82,21 @@
 
                 <field 					
 				name="count" type="list"					
-				default="" label="FLEXI_GOOGLEMAP_NBITEM"					
+				default="DESC LIMIT 100" label="FLEXI_GOOGLEMAP_NBITEM"					
 				description="FLEXI_GOOGLEMAP_NBITEM_DESC">
                 <option	value="">FLEXI_GOOGLEMAP_NOLIMITE</option>	
 				<option	value="DESC LIMIT 10">10</option>						
 				<option	value="DESC LIMIT 50">50</option>						
 				<option	value="DESC LIMIT 100">100</option>						
-				<option	value="DESC LIMIT 500">500</option>						
-				<option	value="DESC LIMIT 1000">1000</option>						
-				<option	value="DESC LIMIT 10000">10000</option>	
+				<option	value="DESC LIMIT 150">150</option>						
+				<option	value="DESC LIMIT 200">200</option>	
+                <option	value="DESC LIMIT 250">250</option>
+                <option	value="DESC LIMIT 300">300</option>	
+                <option	value="DESC LIMIT 350">350</option>
+                <option	value="DESC LIMIT 400">400</option>
+                <option	value="DESC LIMIT 450">450</option>	
+                <option	value="DESC LIMIT 500">500</option>	
+				<option	value="DESC LIMIT 1000">1000</option>	
                     
 			</field>
                 <field name="" type="separator" default="FLEXI_GOOGLEMAP_MARKERSDISPLAY" level="level2" />	
