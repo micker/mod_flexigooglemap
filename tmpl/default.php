@@ -21,7 +21,7 @@ defined('_JEXEC') or die('Accés interdit');
 JHtml::_('bootstrap.tooltip');
 JHTML::_('behavior.modal');
 $document = JFactory::getDocument();
-//$document->addStyleSheet("./modules/mod_flexiadmin/assets/css/style.css",'text/css',"screen");
+$document->addStyleSheet("./modules/mod_flexigooglemap/assets/css/style.css",'text/css',"screen");
 
 //extrafield
 //require_once (JPATH_ADMINISTRATOR.DS.'components/com_flexicontent/defineconstants.php');
@@ -59,6 +59,8 @@ $useadress = $params->get('useadress', '' );
 $animationmarker = $params->get('animationmarker', '' );
 $linkmode = $params->get('linkmode', '' );
 
+$readmore = $params->get('readmore', '' );
+
 
 
 
@@ -76,7 +78,7 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
 //$fc_list_items->fields;
 //$fc_list_items->fieldvalues
 ?>
-<div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap<?php echo $moduleclass_sfx ?>" style="width:<?php echo $width; ?>;height:<?php echo $height; ?>;">
+<div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap map<?php echo $moduleclass_sfx ?>" style="width:<?php echo $width; ?>;height:<?php echo $height; ?>;">
     <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>
         
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&sensor=false<?php if ($apikey) echo '?key='.$apikey; ?>"></script>
@@ -101,7 +103,7 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
             $title = addslashes($itemLoc->title);
             if ($uselink){
                     $link = $itemLoc->link;
-                    $link = '<p class="link"><a href="'.$link.'" target="'.$linkmode.'">'.$title.'</a></p>';
+                    $link = '<p class="link"><a href="'.$link.'" target="'.$linkmode.'">'.JText::_($readmore).'</a></p>';
                     $link = addslashes($link);
             }
             // echo "myPoints.push( new google.maps.LatLng(". $coord ."),contentString('toto')); \r\n";
