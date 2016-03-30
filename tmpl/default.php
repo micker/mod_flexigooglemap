@@ -23,18 +23,17 @@ JHTML::_('behavior.modal');
 $document = JFactory::getDocument();
 $document->addStyleSheet("./modules/mod_flexigooglemap/assets/css/style.css",'text/css',"screen");
 
-//extrafield
-//require_once (JPATH_ADMINISTRATOR.DS.'components/com_flexicontent/defineconstants.php');
-JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_flexicontent'.DS.'tables');
-require_once("./components/com_flexicontent/classes/flexicontent.fields.php");
-require_once("./components/com_flexicontent/classes/flexicontent.helper.php");
-require_once("./components/com_flexicontent/helpers/permission.php");
-require_once("./components/com_flexicontent/models/".FLEXI_ITEMVIEW.".php");
 
 
 require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_flexicontent'.DS.'defineconstants.php');
-require_once(JPATH_SITE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
-require_once(JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'helpers'.DS.'route.php');
+require_once (JPATH_SITE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
+require_once (JPATH_SITE.DS.'components'.DS.'com_flexicontent'.DS.'helpers'.DS.'route.php');
+
+JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_flexicontent'.DS.'tables');
+require_once (JPATH_SITE.DS."components".DS."com_flexicontent".DS."classes".DS."flexicontent.fields.php");
+require_once (JPATH_SITE.DS."components".DS."com_flexicontent".DS."classes".DS."flexicontent.helper.php");
+require_once (JPATH_SITE.DS."components".DS."com_flexicontent".DS."helpers".DS."permission.php");
+require_once (JPATH_SITE.DS."components".DS."com_flexicontent".DS."models".DS.FLEXI_ITEMVIEW.".php");
 
 
 
@@ -77,6 +76,7 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
 //print_r ($fc_list_items); 
 //$fc_list_items->fields;
 //$fc_list_items->fieldvalues
+echo 'toto'.$displayfield;
 ?>
 <div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap map<?php echo $moduleclass_sfx ?>" style="width:<?php echo $width; ?>;height:<?php echo $height; ?>;">
     <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>

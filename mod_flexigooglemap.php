@@ -33,6 +33,8 @@ $markercolor = $params->get('markercolor');
 $lettermarker = $params->get('lettermarker');
 $lettermarkermode = $params->get('lettermarkermode');
 $markerdisplay = modFlexigooglemapHelper::getMarkercolor($params);
+$displayfield = modFlexigooglemapHelper::remplaceField($params);
+$relitem_html = $params->get('relitem_html', '__display_text__' ) ;
 $moduleclass_sfx  = htmlspecialchars($params->get('moduleclass_sfx'));
 
 // Get Joomla Layout
