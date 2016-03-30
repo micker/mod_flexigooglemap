@@ -211,6 +211,6 @@
 	</config>
 	
 	<updateservers>
-        <server type="extension" priority="1" name="FLEXI googlemap update">http://com3elles.com/mod_flexiadmin/mod_flexigooglemap_update.xml</server>
+        <server type="extension" priority="1" name="FLEXI googlemap update">http://update.com3elles.com/mod_flexigooglemap/mod_flexigooglemap_update.xml</server>
     </updateservers>
 </extension>
