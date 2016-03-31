@@ -76,7 +76,7 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
 //print_r ($fc_list_items); 
 //$fc_list_items->fields;
 //$fc_list_items->fieldvalues
-echo 'toto'.$displayfield;
+//echo 'toto'.$displayfield;
 ?>
 <div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap map<?php echo $moduleclass_sfx ?>" style="width:<?php echo $width; ?>;height:<?php echo $height; ?>;">
     <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>
