@@ -128,9 +128,9 @@ abstract class modFlexigooglemapHelper
 		$custom_field_names   = $result ? $field_matches[1] : array();
 		$custom_field_methods = $result ? $field_matches[3] : array();
         
-         dump($custom_field_reps, 'reps');
-         dump($custom_field_names, 'Name');
-         dump($custom_field_methods, 'methode');
+         //dump($custom_field_reps, 'reps');
+         //dump($custom_field_names, 'Name');
+         //dump($custom_field_methods, 'methode');
 		
 		/*foreach ($custom_field_names as $i => $custom_field_name)
 			$parsed_fields[] = $custom_field_names[$i] . ($custom_field_methods[$i] ? "->". $custom_field_methods[$i] : "");
