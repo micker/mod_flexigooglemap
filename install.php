@@ -1,4 +1,21 @@
 <?php
+/**
+* @version 0.5 stable $Id: install.php yannick berges
+* @package Joomla
+* @subpackage FLEXIcontent
+* @copyright (C) 2015 Berges Yannick - www.com3elles.com
+* @license GNU/GPL v2
+
+* special thanks to ggppdk and emmanuel dannan for flexicontent
+* special thanks to my master Marc Studer
+
+* FLEXIadmin module is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details. 
+**/
+
+
 // No direct access to this file
 defined('_JEXEC') or die;
  
