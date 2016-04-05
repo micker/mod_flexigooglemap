@@ -60,6 +60,9 @@ $linkmode = $params->get('linkmode', '' );
 
 $readmore = $params->get('readmore', '' );
 
+$usedirection = $params->get('usedirection','');
+$directionname = $params->get('directionname','');
+
 
 
 
@@ -99,16 +102,20 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
                $addre = addslashes($addre);
             }
             $coordo = $lat.",".$lon;
-            //$title = json_encode($itemLoc->title);
+
             $title = addslashes($itemLoc->title);
             if ($uselink){
                     $link = $itemLoc->link;
                     $link = '<p class="link"><a href="'.$link.'" target="'.$linkmode.'">'.JText::_($readmore).'</a></p>';
                     $link = addslashes($link);
             }
-            // echo "myPoints.push( new google.maps.LatLng(". $coord ."),contentString('toto')); \r\n";
-            //echo "['<h4>$title</h4><p>$addre</p>',". $coordo ."],\r\n";
-            $tMapTips[] = "['<h4 class=\"fleximaptitle\">$title</h4>$addre $link',". $coordo ."]\r\n";
+            if ($usedirection){
+                if (!empty($lat) || !empty($lon) ) {
+                $adressdirection = addslashes($coord['addr_display']);
+                }
+                $linkdirection= '<div class="directions"><a href="http://maps.google.com/maps?q='.$adressdirection.'" target="_blank" class="direction">'.JText::_($directionname).'</a></div>';
+            }
+            $tMapTips[] = "['<h4 class=\"fleximaptitle\">$title</h4>$addre $link $linkdirection',". $coordo ."]\r\n";
         }
     }
     $tabMapTipsJS = implode(",",  $tMapTips);
