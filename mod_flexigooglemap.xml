@@ -178,6 +178,13 @@
                     <option value="_blank">FLEXI_GOOGLEMAP_BLANK</option>
                     <option value="">FLEXI_GOOGLEMAP_SAME</option>
                 </field>
+                     
+                     <field 					
+                        name="$forced_itemid" type="text"					
+                        default="FLEXI_GOOGLEMAP_FORCEITEMID" label="FLEXI_GOOGLEMAP_FORCEITEMID"					
+                        description="FLEXI_GOOGLEMAP_FORCEITEMID_DESC"
+                            showon="uselink:1"
+                    />
                 
                 <field 					
                         name="infotextmode" type="radio"					
