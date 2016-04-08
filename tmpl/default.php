@@ -63,7 +63,8 @@ $readmore = $params->get('readmore', '' );
 $usedirection = $params->get('usedirection','');
 $directionname = $params->get('directionname','');
 
-
+$catidmode = $params->get('catidmode');
+$fieldaddressid = $params->get('fieldaddressid');
 
 
 
@@ -75,11 +76,31 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
 }
 ?>
 <?php 
-//global $fc_list_items;
+global $fc_list_items;
+echo '<pre>';
+//echo $catidmode;
 //print_r ($fc_list_items); 
+echo '</pre>';
 //$fc_list_items->fields;
-//$fc_list_items->fieldvalues
+//$fc_list_items->fieldvalues;
 //echo 'toto'.$displayfield;
+echo '<pre style="background:red;">';
+//var_dump ($fc_list_items->fieldvalues); 
+echo '</pre>';
+//    $fieldaddressid = $params->get('fieldaddressid');
+  //  var_dump ($fc_list_items[2]->fieldvalues[26][0]);
+//foreach ($fc_list_items as $adress){
+    //var_dump ($adress->fieldvalues);
+  //  $coord = $adress->fieldvalues[$fieldaddressid][0];
+    //$coord = unserialize ($coord);
+    //$lat = $coord['lat'];
+    //$lon = $coord['lon'];
+    //if (!empty($lat) || !empty($lon) ) {
+    //echo $lat . ','. $lon;
+    //echo '<br/>';
+    //}
+//}
+
 ?>
 <div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap map<?php echo $moduleclass_sfx ?>" style="width:<?php echo $width; ?>;height:<?php echo $height; ?>;">
     <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>
@@ -91,6 +112,8 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
 <?php
     $tMapTips = array();
     //Recuperation de point de ma bdd
+ 
+        if ($catidmode ==0){// mode categorie fixe
     foreach ($itemsLoc as $itemLoc ){
         $coord = unserialize ($itemLoc->value);
         $lat = $coord['lat'];
@@ -118,6 +141,28 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
             $tMapTips[] = "['<h4 class=\"fleximaptitle\">$title</h4>$addre $link $linkdirection',". $coordo ."]\r\n";
         }
     }
+}else { //mode catégorie courante
+    //var_dump ($fc_list_items[2]->fieldvalues[$fieldaddressid][0]);
+foreach ($fc_list_items as $adress){
+    //var_dump ($adress->fieldvalues);
+    $coord = $adress->fieldvalues[$fieldaddressid][0];
+    $coord = unserialize ($coord);
+    $lat = $coord['lat'];
+    $lon = $coord['lon'];
+    if (!empty($lat) || !empty($lon) ) {
+    $coordo = $lat .",". $lon;
+        // }
+        $title ="titre fixe";
+        $addre ="adresse fixe";
+        $link ="lien fixe";
+        $linkdirection ="itineraire fixe";
+            
+            $tMapTips[] = "['<h4 class=\"fleximaptitle\">$title</h4>$addre $link $linkdirection',".$coordo."]\r\n";
+    }
+       
+}
+        }
+    
     $tabMapTipsJS = implode(",",  $tMapTips);
 ?>
     

@@ -181,7 +181,7 @@
                      
                      <field 					
                         name="$forced_itemid" type="text"					
-                        default="FLEXI_GOOGLEMAP_FORCEITEMID" label="FLEXI_GOOGLEMAP_FORCEITEMID"					
+                        default="" label="FLEXI_GOOGLEMAP_FORCEITEMID"					
                         description="FLEXI_GOOGLEMAP_FORCEITEMID_DESC"
                             showon="uselink:1"
                     />

@@ -31,16 +31,7 @@ abstract class modFlexigooglemapHelper
 {
 	public static function getLoc(&$params)
 	{
-        $catidmode = $params->get('catidmode');
-        if ($catidmode ==1)
-            {
-        $app    = JFactory::getApplication();
-        $jinput = $app->input;
-        $cid = $jinput->get('cid', 0, 'int');
-        $catid = $cid;
-                }else{
                 $catid = $params->get('catid');
-        }
         $fieldaddressid = $params->get('fieldaddressid');
         
         //var_dump ($catid);
