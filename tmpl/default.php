@@ -65,6 +65,10 @@ $directionname = $params->get('directionname','');
 
 $catidmode = $params->get('catidmode');
 $fieldaddressid = $params->get('fieldaddressid');
+$forced_itemid = $params->get('forced_itemid','');
+
+$infotextmode = $params->get('infotextmode','');
+$relitem_html = $params->get('relitem_html','');
 
 
 
@@ -77,30 +81,6 @@ if ( !JComponentHelper::isEnabled( 'com_flexicontent', true) ) {
 ?>
 <?php 
 global $fc_list_items;
-echo '<pre>';
-//echo $catidmode;
-//print_r ($fc_list_items); 
-echo '</pre>';
-//$fc_list_items->fields;
-//$fc_list_items->fieldvalues;
-//echo 'toto'.$displayfield;
-echo '<pre style="background:red;">';
-//var_dump ($fc_list_items->fieldvalues); 
-echo '</pre>';
-//    $fieldaddressid = $params->get('fieldaddressid');
-  //  var_dump ($fc_list_items[2]->fieldvalues[26][0]);
-//foreach ($fc_list_items as $adress){
-    //var_dump ($adress->fieldvalues);
-  //  $coord = $adress->fieldvalues[$fieldaddressid][0];
-    //$coord = unserialize ($coord);
-    //$lat = $coord['lat'];
-    //$lon = $coord['lon'];
-    //if (!empty($lat) || !empty($lon) ) {
-    //echo $lat . ','. $lon;
-    //echo '<br/>';
-    //}
-//}
-
 ?>
 <div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap map<?php echo $moduleclass_sfx ?>" style="width:<?php echo $width; ?>;height:<?php echo $height; ?>;">
     <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>
@@ -121,7 +101,6 @@ echo '</pre>';
         if (!empty($lat) || !empty($lon) ) {
             if ($useadress){
                $addre = '<p>'.$coord['addr_display'].'</p>'; 
-               $addre = '<p>'.$coord['addr_display'].'</p>'; 
                $addre = addslashes($addre);
             }
             $coordo = $lat.",".$lon;
@@ -138,7 +117,15 @@ echo '</pre>';
                 }
                 $linkdirection= '<div class="directions"><a href="http://maps.google.com/maps?q='.$adressdirection.'" target="_blank" class="direction">'.JText::_($directionname).'</a></div>';
             }
-            $tMapTips[] = "['<h4 class=\"fleximaptitle\">$title</h4>$addre $link $linkdirection',". $coordo ."]\r\n";
+        if ($infotextmode){
+            $contentwindows = $relitem_html;
+        }
+            else{
+            $contentwindows = $addre.' '.$link ;
+        }
+        
+            
+            $tMapTips[] = "['<h4 class=\"fleximaptitle\">$title</h4>$contentwindows $linkdirection',".$coordo."]\r\n";
         }
     }
 }else { //mode catégorie courante
@@ -152,12 +139,31 @@ foreach ($fc_list_items as $adress){
     if (!empty($lat) || !empty($lon) ) {
     $coordo = $lat .",". $lon;
         // }
-        $title ="titre fixe";
-        $addre ="adresse fixe";
-        $link ="lien fixe";
-        $linkdirection ="itineraire fixe";
+        $title = addslashes($adress->title);
+            if ($uselink){
+                    $link = JRoute::_(FlexicontentHelperRoute::getItemRoute($adress->id, $adress->catid, $forced_itemid, $adress));;
+                    $link = '<p class="link"><a href="'.$link.'" target="'.$linkmode.'">'.JText::_($readmore).'</a></p>';
+                    $link = addslashes($link);
+            }
+         if ($useadress){
+              $addre = '<p>'.$coord['addr_display'].'</p>'; 
+               $addre = addslashes($addre);
+            }
+         if ($usedirection){
+                if (!empty($lat) || !empty($lon) ) {
+                $adressdirection = addslashes($coord['addr_display']);
+                }
+                $linkdirection= '<div class="directions"><a href="http://maps.google.com/maps?q='.$adressdirection.'" target="_blank" class="direction">'.JText::_($directionname).'</a></div>';
+            }
+        if ($infotextmode){
+            $contentwindows = $relitem_html;
+        }
+            else{
+            $contentwindows = $addre.' '.$link ;
+        }
+        
             
-            $tMapTips[] = "['<h4 class=\"fleximaptitle\">$title</h4>$addre $link $linkdirection',".$coordo."]\r\n";
+            $tMapTips[] = "['<h4 class=\"fleximaptitle\">$title</h4>$contentwindows $linkdirection',".$coordo."]\r\n";
     }
        
 }
