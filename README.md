@@ -10,7 +10,7 @@ FLEXIContent **Google map module**
   - Fixed categorie (list all item in categorie and subcategorie)
   - Current categorie (list all item in categorie **display**) => **COMPATIBLE WITH FLEXIcontent filter**
 
--**options**
+-**Options**
   - Clustering marker
   - API key
   - Custom image for marker point
