@@ -200,7 +200,7 @@ global $fc_list_items;
 
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
+    zoom: 16,
     center: new google.maps.LatLng(-37.92, 151.25),
     mapTypeId: google.maps.MapTypeId.<?php echo $maptype;?>,
     mapTypeControl: false,
@@ -238,6 +238,7 @@ global $fc_list_items;
         infowindow.setContent(locations[i][0]);
         infowindow.open(map, marker);
       }
+      
     })(marker, i));
 
     iconCounter++;

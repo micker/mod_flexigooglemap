@@ -234,6 +234,19 @@
 																description="FLEXI_GOOGLEMAP_READMORE_DESC"
 																/>
 															</fieldset>
+            <fieldset name="advanced">
+    <field
+        name="cache"
+                type="list"
+                default="1"
+                label="COM_MODULES_FIELD_CACHING_LABEL"
+                description="COM_MODULES_FIELD_CACHING_DESC">
+                <option
+                       value="1">JGLOBAL_USE_GLOBAL</option>
+                <option
+                       value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+        </field>
+</fieldset>
 		</fields>
 	</config>
 
