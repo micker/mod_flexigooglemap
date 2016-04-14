@@ -104,6 +104,8 @@ global $fc_list_items;
         if ($useadress){
           $addre = '<p>'.$coord['addr_display'].'</p>';
           $addre = addslashes($addre);
+        }else{
+            $addre = '';
         }
         $coordo = $lat.",".$lon;
 
@@ -112,12 +114,18 @@ global $fc_list_items;
           $link = $itemLoc->link;
           $link = '<p class="link"><a href="'.$link.'" target="'.$linkmode.'">'.JText::_($readmore).'</a></p>';
           $link = addslashes($link);
+        }else{
+            $link = '';
         }
         if ($usedirection){
           if (!empty($lat) || !empty($lon) ) {
-            $adressdirection = addslashes($coord['addr_display']);
+            $adressdirection = $addre;
+          }else{
+              $adressdirection='';
           }
           $linkdirection= '<div class="directions"><a href="http://maps.google.com/maps?q='.$adressdirection.'" target="_blank" class="direction">'.JText::_($directionname).'</a></div>';
+        }else{
+            $linkdirection='';
         }
         if ($infotextmode){
           $contentwindows = $relitem_html;
@@ -146,16 +154,22 @@ global $fc_list_items;
           $link = JRoute::_(FlexicontentHelperRoute::getItemRoute($adress->id, $adress->catid, $forced_itemid, $adress));;
           $link = '<p class="link"><a href="'.$link.'" target="'.$linkmode.'">'.JText::_($readmore).'</a></p>';
           $link = addslashes($link);
+        }else{
+            $link = '';
         }
         if ($useadress){
           $addre = '<p>'.$coord['addr_display'].'</p>';
           $addre = addslashes($addre);
+        }else{
+            $addre = '';
         }
         if ($usedirection){
           if (!empty($lat) || !empty($lon) ) {
-            $adressdirection = addslashes($coord['addr_display']);
+            $adressdirection = $addre;
           }
           $linkdirection= '<div class="directions"><a href="http://maps.google.com/maps?q='.$adressdirection.'" target="_blank" class="direction">'.JText::_($directionname).'</a></div>';
+        }else{
+            $linkdirection='';
         }
         if ($infotextmode){
           $contentwindows = $relitem_html;
