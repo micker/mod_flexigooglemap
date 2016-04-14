@@ -102,6 +102,7 @@ global $fc_list_items;
       $lon = $coord['lon'];
       if (!empty($lat) || !empty($lon) ) {
         if ($useadress){
+        if( ! isset( $coord['addr_display'] ) ) $coord['addr_display'] = '';
           $addre = '<p>'.$coord['addr_display'].'</p>';
           $addre = addslashes($addre);
         }else{
@@ -142,6 +143,7 @@ global $fc_list_items;
     //var_dump ($fc_list_items[2]->fieldvalues[$fieldaddressid][0]);
     foreach ($fc_list_items as $adress){
       //var_dump ($adress->fieldvalues);
+        if( ! isset( $adress->fieldvalues[$fieldaddressid][0] ) ) $adress->fieldvalues[$fieldaddressid][0] = '';
       $coord = $adress->fieldvalues[$fieldaddressid][0];
       $coord = unserialize ($coord);
       $lat = $coord['lat'];
@@ -158,6 +160,7 @@ global $fc_list_items;
             $link = '';
         }
         if ($useadress){
+            if( ! isset( $coord['addr_display'] ) ) $coord['addr_display'] = '';
           $addre = '<p>'.$coord['addr_display'].'</p>';
           $addre = addslashes($addre);
         }else{
