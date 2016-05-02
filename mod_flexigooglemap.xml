@@ -44,11 +44,8 @@
 
 				<field
 					name="catid" type="flexicategories" multiple="false" label="FLEXI_GOOGLEMAP_CAT" description="FLEXI_GOOGLEMAP_DESC" showon="catidmode:0"/>
-					<field
-						name="fieldaddressid" type="text"
-						default="" label="FLEXI_GOOGLEMAP_ADDRESSFIELD"
-						description="FLEXI_GOOGLEMAP_ADDRESSFIELD_DESC"
-						/>
+                
+                <field name="fieldaddressid" type="sql" default="10" label="FLEXI_GOOGLEMAP_ADDRESSFIELD" query="SELECT id AS value, concat( name, ' (', id, ')') AS title FROM #__flexicontent_fields WHERE field_type='addressint'" description="FLEXI_GOOGLEMAP_ADDRESSFIELD_DESC" value_field="title"/>
 						<field
 							name="apikey" type="text"
 							default="" label="FLEXI_GOOGLEMAP_APIKEY"
