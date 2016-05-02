@@ -52,6 +52,32 @@
 							description="FLEXI_GOOGLEMAP_APIKEY_DESC"
 							/>
 							<field name="" type="separator" default="FLEXI_GOOGLEMAP_DISPLAY" level="level1" />
+                <field
+												name="maptype" type="list"
+												default="ROADMAP" label="FLEXI_GOOGLEMAP_MAPTYPE"
+												description="FLEXI_GOOGLEMAP_MAPTYPE_DESC"
+												>
+												<option value="ROADMAP">FLEXI_GOOGLEMAP_ROADMAP</option>
+												<option value="HYBRID">FLEXI_GOOGLEMAP_HYBRID</option>
+												<option value="SATELLITE">FLEXI_GOOGLEMAP_SATELLITE</option>
+												<option value="TERRAIN">FLEXI_GOOGLEMAP_TERRAIN</option>
+											</field>
+											<field
+												name="width" type="text"
+												default="300px" label="FLEXI_GOOGLEMAP_WIDTH"
+												description="FLEXI_GOOGLEMAP_WIDTH_DESC"
+												/>
+												<field
+													name="height" type="text"
+													default="600px" label="FLEXI_GOOGLEMAP_height"
+													description="FLEXI_GOOGLEMAP_HEIGHT_DESC"
+													/>
+												<field
+														name="ratiomap" type="text"
+														default="75%" label="FLEXI_GOOGLEMAP_RATIOMAP"
+														description="FLEXI_GOOGLEMAP_RATIOMAP_DESC"
+												/>
+
 
 							<field
 								name="clustermode" type="radio"
@@ -131,32 +157,7 @@
 												<option value="0">FLEXI_GOOGLEMAP_NO</option>
 												<option value="1">FLEXI_GOOGLEMAP_YES</option>
 											</field>
-											<field
-												name="maptype" type="list"
-												default="ROADMAP" label="FLEXI_GOOGLEMAP_MAPTYPE"
-												description="FLEXI_GOOGLEMAP_MAPTYPE_DESC"
-												>
-												<option value="ROADMAP">FLEXI_GOOGLEMAP_ROADMAP</option>
-												<option value="HYBRID">FLEXI_GOOGLEMAP_HYBRID</option>
-												<option value="SATELLITE">FLEXI_GOOGLEMAP_SATELLITE</option>
-												<option value="TERRAIN">FLEXI_GOOGLEMAP_TERRAIN</option>
-											</field>
-											<field
-												name="width" type="text"
-												default="300px" label="FLEXI_GOOGLEMAP_WIDTH"
-												description="FLEXI_GOOGLEMAP_WIDTH_DESC"
-												/>
-												<field
-													name="height" type="text"
-													default="600px" label="FLEXI_GOOGLEMAP_height"
-													description="FLEXI_GOOGLEMAP_HEIGHT_DESC"
-													/>
-												<field
-														name="ratiomap" type="text"
-														default="75%" label="FLEXI_GOOGLEMAP_RATIOMAP"
-														description="FLEXI_GOOGLEMAP_RATIOMAP_DESC"
-												/>
-
+											
 													<field name="" type="separator" default="FLEXI_GOOGLEMAP_INFOWINDOWS" level="level1" />
 													<field
 														name="uselink" type="radio"
