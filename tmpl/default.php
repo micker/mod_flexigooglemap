@@ -72,6 +72,8 @@ $relitem_html = $params->get('relitem_html','');
 
 $ratiomap = $params->get('ratiomap','');
 
+$style = $params->get('style','');
+
 
 
 jimport( 'joomla.application.component.controller' );
@@ -198,7 +200,6 @@ global $fc_list_items;
   var icons = [<?php echo $markerdisplay; ?>]
   var iconsLength = icons.length;
 
-
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: new google.maps.LatLng(-37.92, 151.25),
@@ -206,6 +207,8 @@ global $fc_list_items;
     mapTypeControl: false,
     streetViewControl: false,
     panControl: false,
+      styles: <?php echo $style; ?>,
+
     zoomControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM
     }
