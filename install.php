@@ -1,6 +1,6 @@
 <?php
 /**
-* @version 0.6 stable $Id: install.php yannick berges
+* @version 0.7 stable $Id: install.php yannick berges
 * @package Joomla
 * @subpackage FLEXIcontent
 * @copyright (C) 2015 Berges Yannick - www.com3elles.com
@@ -77,6 +77,7 @@ class mod_flexigooglemapInstallerScript
   */
   function postflight($type, $parent)
   {
+      /** marker copy **/
     $pathSourceName = JPath::clean(JPATH_ROOT.'/modules/mod_flexigooglemap/assets/marker');
     $pathDestName   = JPath::clean(JPATH_ROOT.'/images/mod_flexigooglemap/marker');
 
@@ -91,5 +92,23 @@ class mod_flexigooglemapInstallerScript
       $file_dest = basename($file);
       copy($file, $pathDestName.'/'.$file_dest);
     }
+      
+           /** cluster copy **/
+    $pathSourceName2 = JPath::clean(JPATH_ROOT.'/modules/mod_flexigooglemap/assets/cluster');
+    $pathDestName2   = JPath::clean(JPATH_ROOT.'/images/mod_flexigooglemap/cluster');
+
+    // 1. Check DESTINATION folder
+    if ( !JFolder::exists($pathDestName2) && !JFolder::create($pathDestName2) ) {
+      echo '<span class="alert alert-warning"> Error, unable to create folder: '. $pathDestName2.'</span>';
+    }
+
+    // 2. Copy all files
+    $files2 = glob($pathSourceName2."/*.*");
+    foreach($files2 as $file2){
+      $file_dest2 = basename($file2);
+      copy($file2, $pathDestName2.'/'.$file_dest2);
+    }
+      
+      
   }
 }

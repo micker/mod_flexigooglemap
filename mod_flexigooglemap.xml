@@ -9,7 +9,7 @@
 	<creationDate>Janvier 2016</creationDate>
 	<authorEmail>yannick@com3elles.com</authorEmail>
 	<authorUrl>www.com3elles.com</authorUrl>
-	<version>0.6</version>
+	<version>0.7</version>
 	<copyright>Copyright (C) 2005 - 2015 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>FLEXI_GOOGLEMAP_INTRO</description>
@@ -88,6 +88,9 @@
 								<option value="0">FLEXI_GOOGLEMAP_NO</option>
 								<option value="1">FLEXI_GOOGLEMAP_YES</option>
 							</field>
+                
+                <field name="imgcluster" type="media" directory="mod_flexigooglemap/cluster" label="FLEXI_GOOGLEMAP_MARKERSIMAGE"
+										description="FLEXI_GOOGLEMAP_MARKERSCIMAGE_DESC" preview="true" preview_width="80" preview_height="80" showon="clustermode:1"/>
 							<field
 								name="gridsize" type="text"
 								default="50" label="FLEXI_GOOGLEMAP_GRIDESIZE"

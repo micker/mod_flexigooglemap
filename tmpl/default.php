@@ -1,6 +1,6 @@
 <?php
 /**
-* @version 0.6 stable $Id: default.php yannick berges
+* @version 0.7 stable $Id: default.php yannick berges
 * @package Joomla
 * @subpackage FLEXIcontent
 * @copyright (C) 2015 Berges Yannick - www.com3elles.com
@@ -51,6 +51,8 @@ $maptype    = $params->get('maptype', '' );
 $clustermode = $params->get('clustermode', '' );
 $gridsize = $params->get('gridsize', '' );
 $maxzoom = $params->get('maxzoom', '' );
+$imgcluster = $params->get('imgcluster','');
+
 
 $uselink = $params->get('uselink', '' );
 $useadress = $params->get('useadress', '' );
@@ -72,8 +74,6 @@ $relitem_html = $params->get('relitem_html','');
 
 $ratiomap = $params->get('ratiomap','');
 
-$style = $params->get('style','');
-
 
 
 jimport( 'joomla.application.component.controller' );
@@ -90,7 +90,7 @@ global $fc_list_items;
   <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>
 
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&sensor=false<?php if ($apikey) echo '?key='.$apikey; ?>"></script>
-  <script type="text/javascript" src="modules/mod_flexigooglemap/assets/js/markerclusterer_compiled.js"></script>
+  <script type="text/javascript" src="modules/mod_flexigooglemap/assets/js/markerclusterer.js"></script>
   <script type="text/javascript">
 
   <?php
@@ -107,12 +107,14 @@ global $fc_list_items;
         if( ! isset( $coord['addr_display'] ) ) $coord['addr_display'] = '';
           $addre = '<p>'.$coord['addr_display'].'</p>';
           $addre = addslashes($addre);
+          $addre  = preg_replace("/(\r\n|\n|\r)/", " ", $addre );
         }else{
             $addre = '';
         }
         $coordo = $lat.",".$lon;
 
         $title = addslashes($itemLoc->title);
+          $title = rtrim($title);
         if ($uselink){
           $link = $itemLoc->link;
           $link = '<p class="link"><a href="'.$link.'" target="'.$linkmode.'">'.JText::_($readmore).'</a></p>';
@@ -154,6 +156,8 @@ global $fc_list_items;
         $coordo = $lat .",". $lon;
         // }
         $title = addslashes($adress->title);
+          
+          
         if ($uselink){
           $link = JRoute::_(FlexicontentHelperRoute::getItemRoute($adress->id, $adress->catid, $forced_itemid, $adress));;
           $link = '<p class="link"><a href="'.$link.'" target="'.$linkmode.'">'.JText::_($readmore).'</a></p>';
@@ -165,6 +169,7 @@ global $fc_list_items;
             if( ! isset( $coord['addr_display'] ) ) $coord['addr_display'] = '';
           $addre = '<p>'.$coord['addr_display'].'</p>';
           $addre = addslashes($addre);
+          $addre  = preg_replace("/(\r\n|\n|\r)/", " ", $addre );
         }else{
             $addre = '';
         }
@@ -200,15 +205,14 @@ global $fc_list_items;
   var icons = [<?php echo $markerdisplay; ?>]
   var iconsLength = icons.length;
 
+
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 16,
+    zoom: 10,
     center: new google.maps.LatLng(-37.92, 151.25),
     mapTypeId: google.maps.MapTypeId.<?php echo $maptype;?>,
     mapTypeControl: false,
     streetViewControl: false,
     panControl: false,
-      styles: <?php echo $style; ?>,
-
     zoomControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM
     }
@@ -241,7 +245,6 @@ global $fc_list_items;
         infowindow.setContent(locations[i][0]);
         infowindow.open(map, marker);
       }
-      
     })(marker, i));
 
     iconCounter++;
@@ -263,7 +266,7 @@ global $fc_list_items;
   }
   <?php if ($clustermode) {
 
-    echo "var mcOptions = {gridSize:$gridsize, maxZoom:$maxzoom};\r\n";
+    echo "var mcOptions = {gridSize:$gridsize, maxZoom:$maxzoom, imagePath: 'images/mod_flexigooglemap/cluster/$imgcluster'};\r\n";
     echo "var marker = new MarkerClusterer(map, markers, mcOptions);\r\n";
   }
   ?>
