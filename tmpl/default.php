@@ -89,7 +89,7 @@ global $fc_list_items;
 <div id="mod_fleximap_default<?php echo $module->id;?>" class="mod_fleximap map<?php echo $moduleclass_sfx ?>" style="width:<?php echo $width; ?>;height:<?php echo $height; ?>;padding-bottom: <?php echo $ratiomap; ?>;">
   <div id="map" style="position: absolute;width:<?php echo $width; ?>;height:<?php echo $height; ?>;"></div>
 
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&sensor=false<?php if ($apikey) echo '?key='.$apikey; ?>"></script>
+  <script type="text/javascript" src="//maps.google.com/maps/api/js<?php if ($apikey) echo '?key='.$apikey; ?>?v=3"></script>
   <script type="text/javascript" src="modules/mod_flexigooglemap/assets/js/markerclusterer.js"></script>
   <script type="text/javascript">
 
