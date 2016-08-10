@@ -166,7 +166,7 @@
 												<option value="1">FLEXI_GOOGLEMAP_YES</option>
 											</field>
                 
-                <field name="style" type="textarea" cols="38" rows="5" default="[your style code]" label="FLEXI_GOOGLEMAP_STYLE" description="FLEXI_GOOGLEMAP_STYLE_DESC"/>
+                <field name="mapstyle" type="textarea" default="[your style code]" label="FLEXI_GOOGLEMAP_STYLE" description="FLEXI_GOOGLEMAP_STYLE_DESC" cols="38" rows="5" filter="raw"/>
 											
 													<field name="" type="separator" default="FLEXI_GOOGLEMAP_INFOWINDOWS" level="level1" />
 													<field

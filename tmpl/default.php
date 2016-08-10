@@ -48,6 +48,8 @@ $mapcenter    = $params->get('mapcenter', '48.8566667, 2.3509871' );
 $apikey    = $params->get('apikey', '' );
 $maptype    = $params->get('maptype', '' );
 $maxzoommarker    = $params->get('maxzoommarker', '' );
+$mapstyle = $params->get('mapstyle','');
+$mapstyle =  substr($mapstyle,1,-1); //Remove[] at end and start
 
 $clustermode = $params->get('clustermode', '' );
 $gridsize = $params->get('gridsize', '' );
@@ -214,6 +216,7 @@ global $fc_list_items;
     mapTypeControl: false,
     streetViewControl: false,
     panControl: false,
+    styles:[<?php echo $mapstyle; ?>],
     zoomControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM
     }
