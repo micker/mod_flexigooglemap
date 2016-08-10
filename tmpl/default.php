@@ -47,6 +47,7 @@ $width    = $params->get('width', '200px' );
 $mapcenter    = $params->get('mapcenter', '48.8566667, 2.3509871' );
 $apikey    = $params->get('apikey', '' );
 $maptype    = $params->get('maptype', '' );
+$maxzoommarker    = $params->get('maxzoommarker', '' );
 
 $clustermode = $params->get('clustermode', '' );
 $gridsize = $params->get('gridsize', '' );
@@ -207,7 +208,7 @@ global $fc_list_items;
 
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
+    maxZoom: [<?php echo $maxzoommarker; ?>],
     center: new google.maps.LatLng(-37.92, 151.25),
     mapTypeId: google.maps.MapTypeId.<?php echo $maptype;?>,
     mapTypeControl: false,

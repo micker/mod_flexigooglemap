@@ -77,6 +77,11 @@
 														default="75%" label="FLEXI_GOOGLEMAP_RATIOMAP"
 														description="FLEXI_GOOGLEMAP_RATIOMAP_DESC"
 												/>
+                <field
+									name="maxzoommarker" type="text"
+									default="15" label="FLEXI_GOOGLEMAP_MAXZOOMMARKER"
+									description="FLEXI_GOOGLEMAP_MAXZOOMMARKER_DESC"
+																	/>
 
 
 							<field
@@ -105,7 +110,7 @@
 									/>
 								<field
 										name="count" type="list"
-										default="DESC LIMIT 100" label="FLEXI_GOOGLEMAP_NBITEM"
+										default="" label="FLEXI_GOOGLEMAP_NBITEM"
 										description="FLEXI_GOOGLEMAP_NBITEM_DESC">
 										<option	value="">FLEXI_GOOGLEMAP_NOLIMITE</option>
 										<option	value="DESC LIMIT 10">10</option>
