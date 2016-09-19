@@ -50,6 +50,20 @@ $maptype    = $params->get('maptype', '' );
 $maxzoommarker    = $params->get('maxzoommarker', '' );
 $mapstyle = $params->get('mapstyle','');
 $mapstyle =  substr($mapstyle,1,-1); //Remove[] at end and start
+$map_style = trim($params->get('mapstyle',''));
+if ($map_style)
+{
+ json_decode($map_style);
+ if (json_last_error() == JSON_ERROR_NONE)
+ {
+  // ALL good, user gave good style
+ }
+ else
+ {
+  $map_style = null;
+  echo '<div class="alert alert-warning"> Bad map styling was set for Module with ID #: '. $module->id.'</div>';
+ }
+}
 
 $clustermode = $params->get('clustermode', '' );
 $gridsize = $params->get('gridsize', '' );
@@ -277,6 +291,4 @@ global $fc_list_items;
   autoCenter();
 
   </script>
-
-</script>
 </div>
